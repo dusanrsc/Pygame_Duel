@@ -199,11 +199,20 @@ while running:
 
 	# health bars
 	# player 1 health bar
-	player1_health = health_bar(player1.rect.x, player1.rect.y, p1_health)
+	# if player 1 hit top wall health bar is changing position
+	if player1.rect.y <= 20:
+		player1_health = health_bar(player1.rect.x, player1.rect.y + 72, p1_health)
+	else:
+		player1_health = health_bar(player1.rect.x, player1.rect.y, p1_health)
 
 	# player 2 health bar
-	player2_health = health_bar(player2.rect.x, player2.rect.y, p2_health)
+	# if player 2 hit top wall health bar is changing position
+	if player2.rect.y <= 20:
+		player2_health = health_bar(player2.rect.x, player2.rect.y + 72, p2_health)
+	else:
+		player2_health = health_bar(player2.rect.x, player2.rect.y, p2_health)
 
+	# displaying start screen controls
 	start_screen()
 
 	# updating the screen and fps counter
