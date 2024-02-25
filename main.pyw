@@ -82,6 +82,9 @@ def main():
 			p1b = P1B(pos_x=player1.rect.x + 30, pos_y=player1.rect.y + 25)
 			p1b_group.add(p1b)
 
+			# recoil when fireing
+			player1.rect.x -= 1
+
 		# player 1 movement on key press
 		if keys[pygame.K_w]:
 			player1.rect.y -= PLAYER_SPEER
@@ -96,6 +99,9 @@ def main():
 		if keys[pygame.K_RSHIFT] and p2_bullet_active == True:
 			p2b = P2B(pos_x=player2.rect.x + 10, pos_y=player2.rect.y + 25)
 			p2b_group.add(p2b)
+
+			# recoil when fireing
+			player2.rect.x += 1
 
 		# player 1 movement on key press
 		if keys[pygame.K_UP]:
@@ -112,9 +118,15 @@ def main():
 		if pygame.sprite.groupcollide(p2b_group, player1_group, True, False, pygame.sprite.collide_rect_ratio(.9)):
 			p1_health -= 1
 
+			# if player 2 got hit
+			player1.rect.x -= 5
+
 		# if player 2 bullet hit player 1
 		if pygame.sprite.groupcollide(p1b_group, player2_group, True, False, pygame.sprite.collide_rect_ratio(.9)):
 			p2_health -= 1
+
+			# if player 2 got hit
+			player2.rect.x += 5
 
 		# bullet collision
 		if pygame.sprite.groupcollide(p1b_group, p2b_group, True, True, pygame.sprite.collide_rect_ratio(.9)):
@@ -166,8 +178,8 @@ def main():
 		# logic for showing start screen image
 		if image_show == True:
 			# drawing start screen control display
-			SCREEN.blit(player1_controles, (120, 200))
-			SCREEN.blit(player2_controles, (480, 200))
+			SCREEN.blit(player1_controles, (120, 225))
+			SCREEN.blit(player2_controles, (480, 225))
 		else:
 			# logic for restricting start screen control display drawing on the screen 
 			pass
@@ -186,7 +198,7 @@ def main():
 			# marker changing collor to winner collor
 			marker(RED)
 			# displaying red player win message
-			SCREEN.blit(red_win, (175, 200))
+			SCREEN.blit(red_win, (175, 225))
 
 		# player 2 lose
 		if p2_health <= 0:
@@ -201,7 +213,7 @@ def main():
 			# marker changing collor to winner collor
 			marker(BLUE)
 			# displaying blue player win message
-			SCREEN.blit(blue_win, (140, 200))
+			SCREEN.blit(blue_win, (140, 225))
 
 		# updating the screen and fps counter
 		pygame.display.flip()

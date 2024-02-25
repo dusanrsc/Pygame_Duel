@@ -4,7 +4,7 @@ from settings import *
 # game classes
 # class player
 class Player1(pygame.sprite.Sprite):
-	def __init__(self, pos_x=50, pos_y=275):
+	def __init__(self, pos_x=50, pos_y=300):
 		super().__init__()
 		self.image = pygame.image.load("sprites/p1.png").convert()
 		self.image.set_colorkey(ALPHA)
@@ -24,7 +24,7 @@ class Player1(pygame.sprite.Sprite):
 
 # class player
 class Player2(pygame.sprite.Sprite):
-	def __init__(self, pos_x=750, pos_y=275):
+	def __init__(self, pos_x=750, pos_y=300):
 		super().__init__()
 		self.image = pygame.image.load("sprites/p2.png").convert()
 		self.image.set_colorkey(ALPHA)
